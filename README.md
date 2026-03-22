@@ -10,7 +10,7 @@ industrial_equity_screener/
 ├── dcf_model.py       # DCF sensitivity table (WACC x terminal growth)
 ├── comps.py           # Peer benchmarking and EV/EBITDA comps table
 ├── outputs/           # CSV exports (auto-generated)
-├── data/              # Raw financials / macro data (plug in Bloomberg/FactSet pulls)
+├── data/              # Raw financials / macro data 
 ├── notebooks/         # Exploratory analysis notebooks
 └── requirements.txt
 ```
