@@ -49,121 +49,197 @@ st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap');
 
-/* Global */
-html, body, [class*="css"] {{
-    font-family: 'Lato', sans-serif;
-    background-color: {PALETTE['bg']};
-    color: {PALETTE['text_dark']};
+/* ── RESET: force light background + dark text everywhere ── */
+html, body {{
+    background-color: {PALETTE['bg']} !important;
+    color: {PALETTE['text_dark']} !important;
+    font-family: 'Lato', sans-serif !important;
 }}
 
-/* Main background */
-.stApp {{
-    background-color: {PALETTE['bg']};
+/* Streamlit root containers — modern class names */
+.stApp,
+.stApp > div,
+[data-testid="stAppViewContainer"],
+[data-testid="stAppViewBlockContainer"],
+[data-testid="block-container"],
+.main,
+.main > div,
+section.main > div {{
+    background-color: {PALETTE['bg']} !important;
+    color: {PALETTE['text_dark']} !important;
+    font-family: 'Lato', sans-serif !important;
 }}
 
-/* Sidebar */
-[data-testid="stSidebar"] {{
-    background-color: {PALETTE['surface']};
-    border-right: 1px solid {PALETTE['border']};
-}}
-
-[data-testid="stSidebar"] .stMarkdown h2,
-[data-testid="stSidebar"] .stMarkdown h3 {{
-    font-family: 'Playfair Display', serif;
-    color: {PALETTE['slate_blue']};
-    font-weight: 600;
-    letter-spacing: 0.04em;
+/* Every text node */
+p, span, div, label, li, td, th, a,
+.stMarkdown, .stMarkdown p, .stMarkdown span,
+.stText, .stCaption,
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] span {{
+    color: {PALETTE['text_dark']} !important;
+    font-family: 'Lato', sans-serif !important;
 }}
 
 /* Headers */
-h1, h2, h3 {{
+h1, h2, h3, h4, h5, h6,
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {{
     font-family: 'Playfair Display', serif !important;
     font-weight: 600 !important;
     color: {PALETTE['text_dark']} !important;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
+}}
+
+/* Sidebar */
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] > div {{
+    background-color: {PALETTE['surface']} !important;
+    border-right: 1px solid {PALETTE['border']};
+}}
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] div {{
+    color: {PALETTE['text_dark']} !important;
 }}
 
 /* Metric cards */
 [data-testid="metric-container"] {{
-    background: {PALETTE['surface']};
+    background: {PALETTE['surface']} !important;
     border: 1px solid {PALETTE['border']};
     border-radius: 6px;
-    padding: 16px !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 14px 16px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }}
-
-[data-testid="metric-container"] label {{
-    font-family: 'JetBrains Mono', monospace;
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] p,
+[data-testid="stMetricLabel"] span {{
+    font-family: 'JetBrains Mono', monospace !important;
     font-size: 10px !important;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
     color: {PALETTE['text_light']} !important;
 }}
-
-[data-testid="metric-container"] [data-testid="stMetricValue"] {{
-    font-family: 'Playfair Display', serif;
-    font-size: 26px !important;
-    font-weight: 600;
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] div {{
+    font-family: 'Playfair Display', serif !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
     color: {PALETTE['text_dark']} !important;
 }}
-
-/* Dataframes */
-[data-testid="stDataFrame"] {{
-    border: 1px solid {PALETTE['border']};
-    border-radius: 6px;
-    overflow: hidden;
+[data-testid="stMetricDelta"],
+[data-testid="stMetricDelta"] div {{
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 11px !important;
 }}
 
 /* Tabs */
+[data-testid="stTabs"] [role="tablist"] {{
+    border-bottom: 1px solid {PALETTE['border']};
+}}
 [data-testid="stTabs"] [role="tab"] {{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 11px !important;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: {PALETTE['text_mid']};
+    color: {PALETTE['text_mid']} !important;
 }}
-
 [data-testid="stTabs"] [role="tab"][aria-selected="true"] {{
-    color: {PALETTE['slate_blue']};
+    color: {PALETTE['slate_blue']} !important;
     border-bottom: 2px solid {PALETTE['slate_blue']};
 }}
 
 /* Buttons */
 .stButton > button {{
-    background: {PALETTE['slate_blue']};
-    color: white;
-    border: none;
+    background: {PALETTE['slate_blue']} !important;
+    color: #ffffff !important;
+    border: none !important;
     border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', monospace !important;
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 10px 24px;
     transition: all 0.2s;
 }}
-
 .stButton > button:hover {{
-    background: {PALETTE['teal_slate']};
+    background: {PALETTE['teal_slate']} !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(95,140,138,0.25);
 }}
 
-/* Inputs */
-.stTextInput input, .stNumberInput input, .stSelectbox select {{
-    border: 1px solid {PALETTE['border']};
+/* Inputs & selects */
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea,
+[data-baseweb="input"] input,
+[data-baseweb="textarea"] textarea {{
+    background: {PALETTE['surface']} !important;
+    color: {PALETTE['text_dark']} !important;
+    border: 1px solid {PALETTE['border']} !important;
     border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', monospace !important;
     font-size: 12px;
-    background: {PALETTE['surface']};
-    color: {PALETTE['text_dark']};
+}}
+[data-baseweb="select"] *,
+[data-testid="stSelectbox"] * {{
+    background: {PALETTE['surface']} !important;
+    color: {PALETTE['text_dark']} !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 12px;
 }}
 
-/* Slider */
-.stSlider [data-baseweb="slider"] {{
-    padding: 8px 0;
+/* Slider labels */
+[data-testid="stSlider"] label,
+[data-testid="stSlider"] p,
+[data-testid="stSlider"] span {{
+    color: {PALETTE['text_mid']} !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 11px !important;
 }}
 
-/* Section cards */
+/* Checkboxes & radio */
+[data-testid="stCheckbox"] label,
+[data-testid="stCheckbox"] span,
+[data-testid="stRadio"] label,
+[data-testid="stRadio"] span {{
+    color: {PALETTE['text_dark']} !important;
+}}
+
+/* Info/warning/error boxes */
+[data-testid="stAlert"],
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] span {{
+    color: {PALETTE['text_dark']} !important;
+    font-family: 'Lato', sans-serif !important;
+}}
+
+/* Expander */
+[data-testid="stExpander"] {{
+    border: 1px solid {PALETTE['border']};
+    border-radius: 6px;
+    background: {PALETTE['surface']} !important;
+}}
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary span,
+[data-testid="stExpander"] summary p {{
+    color: {PALETTE['text_dark']} !important;
+    font-family: 'Lato', sans-serif !important;
+}}
+
+/* Spinner */
+[data-testid="stSpinner"] p {{
+    color: {PALETTE['text_mid']} !important;
+}}
+
+/* Dataframe */
+[data-testid="stDataFrame"] {{
+    border: 1px solid {PALETTE['border']};
+    border-radius: 6px;
+    overflow: hidden;
+}}
+
+/* Section cards (custom class) */
 .section-card {{
     background: {PALETTE['surface']};
     border: 1px solid {PALETTE['border']};
@@ -171,6 +247,7 @@ h1, h2, h3 {{
     padding: 20px 24px;
     margin-bottom: 16px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    color: {PALETTE['text_dark']};
 }}
 
 /* Rating badges */
@@ -182,10 +259,9 @@ h1, h2, h3 {{
     border-radius: 3px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.1em;
 }}
-
 .badge-hold {{
     background: rgba(184,168,130,0.15);
     color: {PALETTE['hold']};
@@ -194,10 +270,9 @@ h1, h2, h3 {{
     border-radius: 3px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.1em;
 }}
-
 .badge-sell {{
     background: rgba(176,90,106,0.12);
     color: {PALETTE['sell']};
@@ -206,44 +281,8 @@ h1, h2, h3 {{
     border-radius: 3px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.1em;
-}}
-
-/* Header strip */
-.header-strip {{
-    background: linear-gradient(135deg, {PALETTE['slate_blue']}18 0%, {PALETTE['powder_blue']}18 100%);
-    border: 1px solid {PALETTE['powder_blue']};
-    border-radius: 8px;
-    padding: 20px 28px;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}}
-
-.header-title {{
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    color: {PALETTE['slate_blue']};
-    letter-spacing: 0.04em;
-    margin: 0;
-}}
-
-.header-sub {{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: {PALETTE['text_light']};
-    margin-top: 4px;
-}}
-
-/* Mono data */
-.mono {{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
 }}
 
 /* Divider */
@@ -251,13 +290,6 @@ hr {{
     border: none;
     border-top: 1px solid {PALETTE['border']};
     margin: 16px 0;
-}}
-
-/* Expander */
-[data-testid="stExpander"] {{
-    border: 1px solid {PALETTE['border']};
-    border-radius: 6px;
-    background: {PALETTE['surface']};
 }}
 </style>
 """, unsafe_allow_html=True)
