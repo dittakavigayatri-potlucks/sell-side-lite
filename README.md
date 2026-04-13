@@ -1,71 +1,87 @@
-# Industrial Sector Equity Screening & Valuation Model
+# ◈ Sell-Side Lite — Institutional Equity Research Platform
 
-Screens and values industrials-sector equities using integrated 3-statement financial modeling, DCF valuation, and EV/EBITDA comparable company analysis. Macro drivers — capex trends, PMI data, and rate-cycle indicators — are incorporated as forecast overlays. Output replicates sell-side research report standards.
+Hedge-fund grade equity screener with integrated DCF, EV/EBITDA comps, scenario engineering, and Monte Carlo simulation. Replicates sell-side research standards.
 
-## Structure
+## Features
 
+| Module | Capability |
+|---|---|
+| **Screener** | Live universe screening with BUY/HOLD/SELL ratings, composite scoring (0-11), sparklines |
+| **Deep Dive** | Price history, MA overlays, volatility bands, full KPI dashboard per ticker |
+| **EV/EBITDA Comps** | Bubble chart, comps table with premium/discount to sector median |
+| **DCF Sensitivity** | WACC × Terminal Growth heatmap (EV and per-share price) |
+| **Scenario Engine** | Bull/Base/Bear + custom scenarios, tornado chart, FCF projection comparison |
+| **Monte Carlo** | 2,000–10,000 simulations, P5/P25/P50/P75/P95 distribution, probability of upside |
+
+## Colour Palette
+Soft institutional palette: Slate Blue · Powder Blue · Warm Cream · Sage Mint · Teal Slate
+
+## Installation
+
+```bash
+pip install -r requirements.txt
 ```
-industrial_equity_screener/
-├── screener.py        # Core: data loading, DCF, comps, screening metrics, rating
-├── dcf_model.py       # DCF sensitivity table (WACC x terminal growth)
-├── comps.py           # Peer benchmarking and EV/EBITDA comps table
-├── outputs/           # CSV exports 
-├── data/              # Raw financials / macro data 
-├── notebooks/         # Exploratory analysis notebooks
-└── requirements.txt
+
+## Run Locally
+
+```bash
+streamlit run app.py
 ```
+
+## Deploy to Streamlit Cloud
+
+1. Push this folder to a GitHub repo
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your repo and set `app.py` as the entrypoint
+4. Deploy — no API keys needed (uses Yahoo Finance)
+
+## Deploy to Railway / Render / Fly.io
+
+Add a `Procfile`:
+```
+web: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+```
+
+## Usage
+
+1. Enter tickers in the sidebar (comma or line-separated, e.g. `CAT, DE, HON, RTX, GE`)
+2. Adjust DCF parameters: WACC, Terminal Growth Rate, Revenue CAGR, FCF Margin
+3. Set macro overlays: ISM PMI, 10Y UST Yield, Industrial Capex Growth
+4. Apply screens: minimum rating, max net leverage, min ROIC
+5. Click **▶ RUN SCREEN** to refresh
+
+## Data Source
+Yahoo Finance via `yfinance`. For production use, replace `fetch_ticker_data()` with Bloomberg/FactSet API calls.
 
 ## Methodology
 
 ### 3-Statement Model
-- P&L: Revenue → EBITDA → EBIT → Net Income
-- Balance Sheet: PPE, current assets, debt, equity
-- Cash Flow: Net income + D&A − Capex − NWC changes = FCF
+- Revenue → EBITDA → EBIT → Net Income
+- FCF = Operating CF − Capex
 
 ### DCF Valuation
-- 5-year explicit FCF projection using forward revenue growth and FCF margin assumptions
+- 5-year explicit FCF projection (configurable 3–10 years)
 - Gordon Growth terminal value
 - WACC-based discounting
-- Sensitivity table: WACC (7%–11%) × Terminal Growth (1.5%–3.5%)
+- Sensitivity table: WACC (6%–13%) × TGR (1.5%–3.5%)
 
 ### EV/EBITDA Comps
-- LTM multiples vs. sub-sector peer medians
-- Premium/discount to peer median
-- Buy/hold/sell thresholds: >10% discount → BUY, >15% premium → SELL
+- LTM multiples vs universe median
+- Premium/discount analysis
+- Buy threshold: >10% discount · Sell threshold: >15% premium
 
-### Macro Overlay
-- ISM Manufacturing PMI (expansion/contraction flag)
-- 10-year UST yield (rate-cycle indicator)
-- Industrial capex growth rate
+### Rating Framework (0–11 composite)
+- ROIC: 2pts (>15%), 1pt (>10%)
+- Revenue Growth: 2pts (>10%), 1pt (>5%)
+- Operating Margin: 2pts (>20%), 1pt (>12%)
+- Net Leverage: 2pts (<1.5x), 1pt (<3x)
+- DCF Upside: 2pts (>20%), 1pt (>5%)
+- EV/EBITDA vs Peers: 1pt (>10% discount)
+- **BUY ≥ 8 · HOLD ≥ 5 · SELL < 5**
 
-### Rating Framework
-Scores ROIC, revenue CAGR, EBITDA margin, net leverage, and PMI regime. BUY ≥ 8/11, HOLD ≥ 5/11, SELL otherwise.
+### Monte Carlo
+- Samples WACC ~ N(base, 0.5), TGR ~ N(base, 0.25), CAGR ~ N(base, 2.5), FCF Margin ~ N(base, 2.0)
+- Returns P5/P25/P50/P75/P95 intrinsic price distribution
 
-## Usage
-
-```python
-# Run full screen on industrials universe
-python screener.py
-
-# DCF sensitivity for a single name
-python dcf_model.py
-
-# Build peer comps table
-python comps.py
-```
-
-## Configuration
-
-Replace simulated data in `load_financials()` and `load_macro_indicators()` with live Bloomberg/FactSet pulls or Excel ingestion via `openpyxl`. WACC and sector multiples are parameterized and easily overridden.
-
-## Requirements
-
-```
-numpy
-pandas
-openpyxl
-```
-
-## Notes
-
-Data in this repo is synthetically generated for demonstration. In production, financials should be sourced from Bloomberg Terminal, FactSet, or SEC EDGAR filings. Macro indicators from FRED API or Bloomberg.
+## Disclaimer
+For informational purposes only. Not investment advice.
