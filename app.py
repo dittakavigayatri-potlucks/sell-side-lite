@@ -284,19 +284,77 @@ COLOR_SCALE = [
 ]
 
 # ─── DATA FETCHING ────────────────────────────────────────────────────────────
-@st.cache_data(ttl=3600)
+@st.cache_data(ttl=3600, show_spinner=False)
+def fetch_info_and_statements(ticker: str):
+    """Fetch fundamentals (info + financial statements) — cacheable."""
+    for attempt in range(3):
+        try:
+            t = yf.Ticker(ticker)
+            info = t.info or {}
+            # Bail if yfinance returned an empty shell
+            if not info.get("regularMarketPrice") and not info.get("currentPrice") and not info.get("marketCap"):
+                if attempt < 2:
+                    import time; time.sleep(1)
+                    continue
+            fin = t.financials
+            bs  = t.balance_sheet
+            cf  = t.cashflow
+            # Serialise DataFrames to JSON so cache_data can handle them
+            return {
+                "info": info,
+                "fin_json":  fin.to_json()  if fin  is not None and not fin.empty  else None,
+                "bs_json":   bs.to_json()   if bs   is not None and not bs.empty   else None,
+                "cf_json":   cf.to_json()   if cf   is not None and not cf.empty   else None,
+                "valid": True,
+            }
+        except Exception as e:
+            if attempt < 2:
+                import time; time.sleep(1)
+            else:
+                return {"valid": False, "error": str(e)}
+    return {"valid": False, "error": "max retries"}
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def fetch_price_history(ticker: str):
+    """Fetch OHLCV history separately — returns JSON string for cache compatibility."""
+    for attempt in range(3):
+        try:
+            t = yf.Ticker(ticker)
+            hist = t.history(period="2y", interval="1d")
+            if hist is not None and not hist.empty:
+                return hist["Close"].to_json()
+            if attempt < 2:
+                import time; time.sleep(1)
+        except Exception:
+            if attempt < 2:
+                import time; time.sleep(1)
+    return None
+
 def fetch_ticker_data(ticker: str):
-    """Fetch comprehensive financial data from yfinance."""
-    try:
-        t = yf.Ticker(ticker)
-        info = t.info or {}
-        hist = t.history(period="2y", interval="1d")
-        fin = t.financials
-        bs = t.balance_sheet
-        cf = t.cashflow
-        return {"info": info, "hist": hist, "fin": fin, "bs": bs, "cf": cf, "valid": True}
-    except Exception as e:
-        return {"valid": False, "error": str(e)}
+    """Reconstruct the data dict from cached pieces."""
+    raw = fetch_info_and_statements(ticker)
+    if not raw or not raw.get("valid"):
+        return {"valid": False, "error": raw.get("error", "unknown") if raw else "none"}
+    def _df(j):
+        try: return pd.read_json(j) if j else None
+        except: return None
+    hist_json = fetch_price_history(ticker)
+    hist_df = None
+    if hist_json:
+        try:
+            s = pd.read_json(hist_json, typ="series")
+            hist_df = s.to_frame(name="Close")
+            hist_df.index = pd.to_datetime(hist_df.index, unit="ms", utc=True).tz_localize(None)
+        except Exception:
+            hist_df = None
+    return {
+        "info": raw["info"],
+        "hist": hist_df,
+        "fin":  _df(raw.get("fin_json")),
+        "bs":   _df(raw.get("bs_json")),
+        "cf":   _df(raw.get("cf_json")),
+        "valid": True,
+    }
 
 def safe_get(d, key, default=None):
     v = d.get(key, default)
@@ -310,16 +368,31 @@ def extract_fundamentals(data):
     cf = data["cf"]
 
     def row_val(df, keywords, idx=0):
+        """Safely pull a value from a financial statement DataFrame.
+        Handles both row-indexed (normal yfinance) and column-indexed (after JSON roundtrip)."""
         if df is None or df.empty:
             return None
-        for k in keywords:
-            matches = [c for c in df.index if k.lower() in c.lower()]
-            if matches:
-                try:
-                    v = df.loc[matches[0]].iloc[idx]
-                    return float(v) if pd.notna(v) else None
-                except:
-                    pass
+        try:
+            # Try rows first (standard yfinance orientation: rows=line items, cols=dates)
+            for k in keywords:
+                matches = [r for r in df.index if k.lower() in str(r).lower()]
+                if matches:
+                    row = df.loc[matches[0]]
+                    # Drop NaN and take the most recent non-null value
+                    vals = row.dropna()
+                    if len(vals) > 0:
+                        v = vals.iloc[min(idx, len(vals)-1)]
+                        return float(v) if pd.notna(v) else None
+            # Try columns (transposed — sometimes happens after pd.read_json)
+            for k in keywords:
+                matches = [c for c in df.columns if k.lower() in str(c).lower()]
+                if matches:
+                    col = df[matches[0]].dropna()
+                    if len(col) > 0:
+                        v = col.iloc[min(idx, len(col)-1)]
+                        return float(v) if pd.notna(v) else None
+        except Exception:
+            pass
         return None
 
     rev = safe_get(info, "totalRevenue")
@@ -884,19 +957,19 @@ tab_screener, tab_single, tab_comps, tab_dcf, tab_scenario, tab_monte = st.tabs(
 ])
 
 # ─── LOAD DATA ────────────────────────────────────────────────────────────────
-@st.cache_data(ttl=3600)
-def load_all(tickers_tuple):
+def load_all(tickers_list):
+    """Load all tickers — NOT cached at this level (cache is per-ticker above)."""
     results = {}
-    for t in tickers_tuple:
+    for t in tickers_list:
         data = fetch_ticker_data(t)
-        if data["valid"]:
+        if data.get("valid"):
             f = extract_fundamentals(data)
-            f["_hist"] = data["hist"]
+            f["_hist"] = data.get("hist")   # DataFrame stored only in session, not cache
             results[t] = f
     return results
 
-with st.spinner("Fetching market data…"):
-    all_data = load_all(tuple(tickers))
+with st.spinner("Fetching market data… (first load may take ~10s)"):
+    all_data = load_all(tickers)
 
 # Run DCF for all tickers
 all_dcf = {}
@@ -918,8 +991,25 @@ _NO_DATA_MSG = "⚠️ No data loaded. Check that tickers are valid and yfinance
 # ─── TAB 1: SCREENER ─────────────────────────────────────────────────────────
 with tab_screener:
     if _NO_DATA:
-        st.warning(_NO_DATA_MSG)
-        st.info("💡 Enter tickers like `CAT, DE, HON, RTX, GE` in the sidebar. yfinance occasionally needs a retry — try adjusting a slider or re-entering tickers.")
+        st.warning("⚠️ No data loaded — yfinance could not fetch any tickers.")
+        col_retry, col_debug = st.columns([1, 3])
+        with col_retry:
+            if st.button("🔄 Clear Cache & Retry"):
+                st.cache_data.clear()
+                st.rerun()
+        st.info("💡 **Tip:** If this persists, try tickers one at a time (e.g. just `AAPL`) to confirm yfinance is reachable. Streamlit Cloud's free tier occasionally blocks outbound requests.")
+        with st.expander("🔬 Debug — raw fetch results"):
+            for t in tickers:
+                try:
+                    raw = fetch_info_and_statements(t)
+                    if raw and raw.get("valid"):
+                        info = raw.get("info", {})
+                        price = info.get("currentPrice") or info.get("regularMarketPrice") or info.get("previousClose")
+                        st.write(f"**{t}**: valid={raw['valid']} | price={price} | keys={len(info)}")
+                    else:
+                        st.write(f"**{t}**: FAILED — {raw.get('error') if raw else 'None returned'}")
+                except Exception as ex:
+                    st.write(f"**{t}**: EXCEPTION — {ex}")
     else:
         rows = []
         for t, f in all_data.items():
