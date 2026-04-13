@@ -47,11 +47,11 @@ PALETTE = {
 # ─── CUSTOM CSS ──────────────────────────────────────────────────────────────
 st.markdown(f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap');
 
 /* Global */
 html, body, [class*="css"] {{
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
     background-color: {PALETTE['bg']};
     color: {PALETTE['text_dark']};
 }}
@@ -69,7 +69,7 @@ html, body, [class*="css"] {{
 
 [data-testid="stSidebar"] .stMarkdown h2,
 [data-testid="stSidebar"] .stMarkdown h3 {{
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     color: {PALETTE['slate_blue']};
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -77,7 +77,7 @@ html, body, [class*="css"] {{
 
 /* Headers */
 h1, h2, h3 {{
-    font-family: 'Cormorant Garamond', serif !important;
+    font-family: 'Playfair Display', serif !important;
     font-weight: 600 !important;
     color: {PALETTE['text_dark']} !important;
     letter-spacing: 0.03em;
@@ -93,7 +93,7 @@ h1, h2, h3 {{
 }}
 
 [data-testid="metric-container"] label {{
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 10px !important;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -101,7 +101,7 @@ h1, h2, h3 {{
 }}
 
 [data-testid="metric-container"] [data-testid="stMetricValue"] {{
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 26px !important;
     font-weight: 600;
     color: {PALETTE['text_dark']} !important;
@@ -116,7 +116,7 @@ h1, h2, h3 {{
 
 /* Tabs */
 [data-testid="stTabs"] [role="tab"] {{
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -134,7 +134,7 @@ h1, h2, h3 {{
     color: white;
     border: none;
     border-radius: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -152,7 +152,7 @@ h1, h2, h3 {{
 .stTextInput input, .stNumberInput input, .stSelectbox select {{
     border: 1px solid {PALETTE['border']};
     border-radius: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     background: {PALETTE['surface']};
     color: {PALETTE['text_dark']};
@@ -180,7 +180,7 @@ h1, h2, h3 {{
     border: 1px solid rgba(95,140,138,0.35);
     padding: 3px 12px;
     border-radius: 3px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -192,7 +192,7 @@ h1, h2, h3 {{
     border: 1px solid rgba(184,168,130,0.4);
     padding: 3px 12px;
     border-radius: 3px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -204,7 +204,7 @@ h1, h2, h3 {{
     border: 1px solid rgba(176,90,106,0.35);
     padding: 3px 12px;
     border-radius: 3px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -223,7 +223,7 @@ h1, h2, h3 {{
 }}
 
 .header-title {{
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 32px;
     font-weight: 700;
     color: {PALETTE['slate_blue']};
@@ -232,7 +232,7 @@ h1, h2, h3 {{
 }}
 
 .header-sub {{
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -242,7 +242,7 @@ h1, h2, h3 {{
 
 /* Mono data */
 .mono {{
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
 }}
 
@@ -265,10 +265,10 @@ hr {{
 # ─── PLOTLY TEMPLATE ─────────────────────────────────────────────────────────
 PLOT_TEMPLATE = dict(
     layout=go.Layout(
-        font=dict(family="DM Sans, sans-serif", color=PALETTE['text_dark'], size=11),
+        font=dict(family="Lato, sans-serif", color=PALETTE['text_dark'], size=11),
         paper_bgcolor=PALETTE['surface'],
         plot_bgcolor=PALETTE['bg'],
-        title_font=dict(family="Cormorant Garamond, serif", size=18, color=PALETTE['text_dark']),
+        title_font=dict(family="Playfair Display, serif", size=18, color=PALETTE['text_dark']),
         xaxis=dict(gridcolor=PALETTE['border'], linecolor=PALETTE['border'], showgrid=True, zeroline=False),
         yaxis=dict(gridcolor=PALETTE['border'], linecolor=PALETTE['border'], showgrid=True, zeroline=False),
         legend=dict(bgcolor=PALETTE['surface'], bordercolor=PALETTE['border'], borderwidth=1),
@@ -556,7 +556,7 @@ def plot_dcf_waterfall(dcf_res, ticker):
         marker_color=colors,
         text=[f"${v:.1f}B" for v in vals],
         textposition="outside",
-        textfont=dict(family="DM Mono, monospace", size=10),
+        textfont=dict(family="JetBrains Mono, monospace", size=10),
     ))
     fig.update_layout(
         **PLOT_TEMPLATE["layout"].to_plotly_json(),
@@ -585,13 +585,13 @@ def plot_sensitivity_heatmap(sens_df, ticker, label="Intrinsic EV ($B)"):
         ],
         text=[[f"${v:.1f}B" if v else "—" for v in row] for row in z],
         texttemplate="%{text}",
-        textfont=dict(family="DM Mono, monospace", size=10, color=PALETTE["text_dark"]),
+        textfont=dict(family="JetBrains Mono, monospace", size=10, color=PALETTE["text_dark"]),
         hovertemplate="WACC: %{y}<br>TGR: %{x}<br>" + label + ": %{text}<extra></extra>",
         showscale=True,
         colorbar=dict(
             title=label,
-            titlefont=dict(family="DM Mono, monospace", size=10),
-            tickfont=dict(family="DM Mono, monospace", size=9),
+            titlefont=dict(family="JetBrains Mono, monospace", size=10),
+            tickfont=dict(family="JetBrains Mono, monospace", size=9),
         )
     ))
     fig.update_layout(
@@ -621,7 +621,7 @@ def plot_comps_bubble(comps_data):
             name=t,
             text=[t],
             textposition="top center",
-            textfont=dict(family="DM Mono, monospace", size=10),
+            textfont=dict(family="JetBrains Mono, monospace", size=10),
             marker=dict(
                 size=max(12, min(50, mc / 20)),
                 color=colors[i % len(colors)],
@@ -637,7 +637,7 @@ def plot_comps_bubble(comps_data):
         med_ev = np.median(valid_ev)
         fig.add_hline(y=med_ev, line_dash="dash", line_color=PALETTE["text_light"],
                       annotation_text=f"Median: {med_ev:.1f}x",
-                      annotation_font=dict(family="DM Mono, monospace", size=9))
+                      annotation_font=dict(family="JetBrains Mono, monospace", size=9))
 
     fig.update_layout(
         **PLOT_TEMPLATE["layout"].to_plotly_json(),
@@ -676,7 +676,7 @@ def plot_scenario_tornado(scenarios, ticker):
             marker_color=color,
             text=[f"${base_price + val:.2f}"],
             textposition="outside",
-            textfont=dict(family="DM Mono, monospace", size=10),
+            textfont=dict(family="JetBrains Mono, monospace", size=10),
             showlegend=False,
         ))
 
@@ -726,7 +726,7 @@ def plot_monte_carlo(f, base_cagr, base_fcf_margin, base_wacc, base_tgr, n_sims=
             line_color=color,
             line_dash="dash" if pct != 50 else "solid",
             annotation_text=f"P{pct}: ${val:.0f}",
-            annotation_font=dict(family="DM Mono, monospace", size=9, color=color),
+            annotation_font=dict(family="JetBrains Mono, monospace", size=9, color=color),
         )
     if f.get("price"):
         fig.add_vline(
@@ -734,7 +734,7 @@ def plot_monte_carlo(f, base_cagr, base_fcf_margin, base_wacc, base_tgr, n_sims=
             line_color=PALETTE["warm_cream"],
             line_width=2,
             annotation_text=f"Market: ${f['price']:.0f}",
-            annotation_font=dict(family="DM Mono, monospace", size=9),
+            annotation_font=dict(family="JetBrains Mono, monospace", size=9),
         )
 
     fig.update_layout(
@@ -853,25 +853,25 @@ st.markdown(f"""
 <div class="section-card" style="background: linear-gradient(135deg, rgba(98,114,164,0.06) 0%, rgba(95,140,138,0.06) 100%); border-color: {PALETTE['powder_blue']};">
   <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
     <div>
-      <p class="header-title" style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700; color:{PALETTE['slate_blue']}; margin:0;">◈ Sell-Side Lite</p>
-      <p class="header-sub" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:{PALETTE['text_light']}; margin:4px 0 0;">Institutional Equity Research · Industrial Sector</p>
+      <p class="header-title" style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:{PALETTE['slate_blue']}; margin:0;">◈ Sell-Side Lite</p>
+      <p class="header-sub" style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:{PALETTE['text_light']}; margin:4px 0 0;">Institutional Equity Research · Industrial Sector</p>
     </div>
     <div style="display:flex; gap:24px; flex-wrap:wrap;">
       <div style="text-align:center;">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">ISM PMI</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:{pmi_color};">{ism_pmi:.1f} <span style="font-size:11px;">({pmi_regime})</span></div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">ISM PMI</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:{pmi_color};">{ism_pmi:.1f} <span style="font-size:11px;">({pmi_regime})</span></div>
       </div>
       <div style="text-align:center;">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">10Y UST</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:{rate_color};">{ust_10y:.2f}% <span style="font-size:11px;">({rate_regime})</span></div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">10Y UST</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:{rate_color};">{ust_10y:.2f}% <span style="font-size:11px;">({rate_regime})</span></div>
       </div>
       <div style="text-align:center;">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">Capex Growth</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:{PALETTE['teal_slate'] if capex_growth >= 0 else PALETTE['sell']};">{capex_growth:+.1f}%</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">Capex Growth</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:{PALETTE['teal_slate'] if capex_growth >= 0 else PALETTE['sell']};">{capex_growth:+.1f}%</div>
       </div>
       <div style="text-align:center;">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">Universe</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:{PALETTE['slate_blue']};">{len(tickers)} Names</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:{PALETTE['text_light']};">Universe</div>
+        <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:{PALETTE['slate_blue']};">{len(tickers)} Names</div>
       </div>
     </div>
   </div>
@@ -912,118 +912,121 @@ for t, f in all_data.items():
     rating, score, details = compute_rating(f, all_dcf.get(t), sector_median)
     all_ratings[t] = {"rating": rating, "score": score, "details": details}
 
+_NO_DATA = len(all_data) == 0
+_NO_DATA_MSG = "⚠️ No data loaded. Check that tickers are valid and yfinance can reach Yahoo Finance."
+
 # ─── TAB 1: SCREENER ─────────────────────────────────────────────────────────
 with tab_screener:
-    rows = []
-    for t, f in all_data.items():
-        r = all_ratings[t]
-        dcf_res = all_dcf.get(t)
-        row = {
-            "Ticker": t,
-            "Name": (f.get("name") or "")[:28],
-            "Sector": f.get("industry", "")[:22],
-            "Price": f.get("price"),
-            "Mkt Cap": f.get("mkt_cap"),
-            "EV/EBITDA": f.get("ev_ebitda"),
-            "EV/EBITDA vs Med": ((f.get("ev_ebitda") - sector_median) / sector_median * 100) if f.get("ev_ebitda") and sector_median else None,
-            "DCF Upside %": dcf_res.get("upside") if dcf_res else None,
-            "Intrinsic Price": dcf_res.get("intrinsic_price") if dcf_res else None,
-            "EBITDA Margin": f.get("op_margin"),
-            "Rev Growth": f.get("rev_growth"),
-            "ROIC": f.get("roic"),
-            "Net Leverage": f.get("net_lev"),
-            "Beta": f.get("beta"),
-            "Score": r["score"],
-            "Rating": r["rating"],
-        }
-        # Apply screens
-        if min_rating != "All":
-            order = {"BUY": 3, "HOLD": 2, "SELL": 1}
-            if order.get(r["rating"], 0) < order.get(min_rating, 0):
-                continue
-        if row["Net Leverage"] is not None and row["Net Leverage"] > max_net_lev:
-            continue
-        if row["ROIC"] is not None and row["ROIC"] * 100 < min_roic:
-            continue
-        rows.append(row)
-
-    if rows:
-        df = pd.DataFrame(rows)
-
-        # Summary row
-        buys = sum(1 for r in rows if r["Rating"] == "BUY")
-        holds = sum(1 for r in rows if r["Rating"] == "HOLD")
-        sells = sum(1 for r in rows if r["Rating"] == "SELL")
-
-        c1, c2, c3, c4 = st.columns(4)
-        with c1:
-            st.metric("Universe", len(rows))
-        with c2:
-            st.metric("BUY", buys, delta=None)
-        with c3:
-            st.metric("HOLD", holds)
-        with c4:
-            st.metric("SELL", sells)
-
-        st.markdown("---")
-
-        # Format for display
-        disp = df.copy()
-        disp["Price"] = disp["Price"].apply(lambda v: f"${v:.2f}" if v else "—")
-        disp["Mkt Cap"] = disp["Mkt Cap"].apply(fmt_b)
-        disp["EV/EBITDA"] = disp["EV/EBITDA"].apply(lambda v: f"{v:.1f}x" if v else "—")
-        disp["EV/EBITDA vs Med"] = disp["EV/EBITDA vs Med"].apply(lambda v: f"{v:+.1f}%" if v else "—")
-        disp["DCF Upside %"] = disp["DCF Upside %"].apply(lambda v: f"{v:+.1f}%" if v else "—")
-        disp["Intrinsic Price"] = disp["Intrinsic Price"].apply(lambda v: f"${v:.2f}" if v else "—")
-        disp["EBITDA Margin"] = disp["EBITDA Margin"].apply(lambda v: f"{v*100:.1f}%" if v else "—")
-        disp["Rev Growth"] = disp["Rev Growth"].apply(lambda v: f"{v*100:.1f}%" if v else "—")
-        disp["ROIC"] = disp["ROIC"].apply(lambda v: f"{v*100:.1f}%" if v else "—")
-        disp["Net Leverage"] = disp["Net Leverage"].apply(lambda v: f"{v:.1f}x" if v else "—")
-        disp["Beta"] = disp["Beta"].apply(lambda v: f"{v:.2f}" if v else "—")
-
-        # Colour rating column
-        def style_rating(val):
-            if val == "BUY": return f"color: {PALETTE['buy']}; font-weight: 600;"
-            if val == "SELL": return f"color: {PALETTE['sell']}; font-weight: 600;"
-            return f"color: {PALETTE['hold']}; font-weight: 600;"
-
-        styled = disp.style.applymap(style_rating, subset=["Rating"])
-        st.dataframe(styled, use_container_width=True, height=380)
-
-        # Mini sparklines row
-        st.markdown("### Price Sparklines")
-        cols = st.columns(min(len(rows), 4))
-        for i, row in enumerate(rows[:8]):
-            t = row["Ticker"]
-            with cols[i % 4]:
-                hist = all_data[t].get("_hist")
-                if hist is not None and not hist.empty:
-                    closes = hist["Close"].tail(90)
-                    color = PALETTE["teal_slate"] if closes.iloc[-1] >= closes.iloc[0] else PALETTE["sell"]
-                    fig_mini = go.Figure(go.Scatter(
-                        y=closes, x=list(range(len(closes))),
-                        line=dict(color=color, width=2),
-                        fill='tozeroy',
-                        fillcolor=f"rgba({'95,140,138' if color == PALETTE['teal_slate'] else '176,90,106'},0.08)",
-                    ))
-                    fig_mini.update_layout(
-                        paper_bgcolor=PALETTE["surface"],
-                        plot_bgcolor=PALETTE["bg"],
-                        margin=dict(l=4, r=4, t=28, b=4),
-                        height=110,
-                        title=dict(text=f"<b>{t}</b> — {row['Rating']}", font=dict(size=11, family="DM Mono, monospace"), x=0.05),
-                        xaxis=dict(visible=False),
-                        yaxis=dict(visible=False),
-                        showlegend=False,
-                    )
-                    st.plotly_chart(fig_mini, use_container_width=True, config={"displayModeBar": False})
+    if _NO_DATA:
+        st.warning(_NO_DATA_MSG)
+        st.info("💡 Enter tickers like `CAT, DE, HON, RTX, GE` in the sidebar. yfinance occasionally needs a retry — try adjusting a slider or re-entering tickers.")
     else:
-        st.info("No tickers match current screens. Adjust filters in the sidebar.")
+        rows = []
+        for t, f in all_data.items():
+            r = all_ratings[t]
+            dcf_res = all_dcf.get(t)
+            row = {
+                "Ticker": t,
+                "Name": (f.get("name") or "")[:28],
+                "Sector": f.get("industry", "")[:22],
+                "Price": f.get("price"),
+                "Mkt Cap": f.get("mkt_cap"),
+                "EV/EBITDA": f.get("ev_ebitda"),
+                "EV/EBITDA vs Med": ((f.get("ev_ebitda") - sector_median) / sector_median * 100) if f.get("ev_ebitda") and sector_median else None,
+                "DCF Upside %": dcf_res.get("upside") if dcf_res else None,
+                "Intrinsic Price": dcf_res.get("intrinsic_price") if dcf_res else None,
+                "EBITDA Margin": f.get("op_margin"),
+                "Rev Growth": f.get("rev_growth"),
+                "ROIC": f.get("roic"),
+                "Net Leverage": f.get("net_lev"),
+                "Beta": f.get("beta"),
+                "Score": r["score"],
+                "Rating": r["rating"],
+            }
+            # Apply screens
+            if min_rating != "All":
+                order = {"BUY": 3, "HOLD": 2, "SELL": 1}
+                if order.get(r["rating"], 0) < order.get(min_rating, 0):
+                    continue
+            if row["Net Leverage"] is not None and row["Net Leverage"] > max_net_lev:
+                continue
+            if row["ROIC"] is not None and row["ROIC"] * 100 < min_roic:
+                continue
+            rows.append(row)
 
+        if not rows:
+            st.info("No tickers match current screens. Adjust filters in the sidebar.")
+        else:
+            df = pd.DataFrame(rows)
+
+            buys = sum(1 for r in rows if r["Rating"] == "BUY")
+            holds = sum(1 for r in rows if r["Rating"] == "HOLD")
+            sells = sum(1 for r in rows if r["Rating"] == "SELL")
+
+            c1, c2, c3, c4 = st.columns(4)
+            with c1:
+                st.metric("Universe", len(rows))
+            with c2:
+                st.metric("BUY", buys)
+            with c3:
+                st.metric("HOLD", holds)
+            with c4:
+                st.metric("SELL", sells)
+
+            st.markdown("---")
+
+            disp = df.copy()
+            disp["Price"] = disp["Price"].apply(lambda v: f"${v:.2f}" if v else "—")
+            disp["Mkt Cap"] = disp["Mkt Cap"].apply(fmt_b)
+            disp["EV/EBITDA"] = disp["EV/EBITDA"].apply(lambda v: f"{v:.1f}x" if v else "—")
+            disp["EV/EBITDA vs Med"] = disp["EV/EBITDA vs Med"].apply(lambda v: f"{v:+.1f}%" if v else "—")
+            disp["DCF Upside %"] = disp["DCF Upside %"].apply(lambda v: f"{v:+.1f}%" if v else "—")
+            disp["Intrinsic Price"] = disp["Intrinsic Price"].apply(lambda v: f"${v:.2f}" if v else "—")
+            disp["EBITDA Margin"] = disp["EBITDA Margin"].apply(lambda v: f"{v*100:.1f}%" if v else "—")
+            disp["Rev Growth"] = disp["Rev Growth"].apply(lambda v: f"{v*100:.1f}%" if v else "—")
+            disp["ROIC"] = disp["ROIC"].apply(lambda v: f"{v*100:.1f}%" if v else "—")
+            disp["Net Leverage"] = disp["Net Leverage"].apply(lambda v: f"{v:.1f}x" if v else "—")
+            disp["Beta"] = disp["Beta"].apply(lambda v: f"{v:.2f}" if v else "—")
+
+            def style_rating(val):
+                if val == "BUY": return f"color: {PALETTE['buy']}; font-weight: 600;"
+                if val == "SELL": return f"color: {PALETTE['sell']}; font-weight: 600;"
+                return f"color: {PALETTE['hold']}; font-weight: 600;"
+
+            styled = disp.style.applymap(style_rating, subset=["Rating"])
+            st.dataframe(styled, use_container_width=True, height=380)
+
+            st.markdown("### Price Sparklines")
+            spark_cols = st.columns(min(len(rows), 4))
+            for i, srow in enumerate(rows[:8]):
+                tk = srow["Ticker"]
+                with spark_cols[i % 4]:
+                    hist = all_data[tk].get("_hist")
+                    if hist is not None and not hist.empty:
+                        closes = hist["Close"].tail(90)
+                        spk_color = PALETTE["teal_slate"] if closes.iloc[-1] >= closes.iloc[0] else PALETTE["sell"]
+                        rgb = "95,140,138" if spk_color == PALETTE["teal_slate"] else "176,90,106"
+                        fig_mini = go.Figure(go.Scatter(
+                            y=closes, x=list(range(len(closes))),
+                            line=dict(color=spk_color, width=2),
+                            fill="tozeroy",
+                            fillcolor=f"rgba({rgb},0.08)",
+                        ))
+                        fig_mini.update_layout(
+                            paper_bgcolor=PALETTE["surface"],
+                            plot_bgcolor=PALETTE["bg"],
+                            margin=dict(l=4, r=4, t=28, b=4),
+                            height=110,
+                            title=dict(text=f"<b>{tk}</b> — {srow['Rating']}", font=dict(size=11, family="JetBrains Mono, monospace"), x=0.05),
+                            xaxis=dict(visible=False),
+                            yaxis=dict(visible=False),
+                            showlegend=False,
+                        )
+                        st.plotly_chart(fig_mini, use_container_width=True, config={"displayModeBar": False})
 # ─── TAB 2: DEEP DIVE ─────────────────────────────────────────────────────────
 with tab_single:
-    if not all_data:
-        st.info("No valid tickers loaded.")
+    if _NO_DATA:
+        st.warning(_NO_DATA_MSG)
     else:
         sel = st.selectbox("Select ticker for deep dive", list(all_data.keys()))
         f = all_data[sel]
@@ -1040,15 +1043,15 @@ with tab_single:
         <div class="section-card">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
             <div>
-              <div style="font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; color:{PALETTE['slate_blue']}; line-height:1;">{sel}</div>
-              <div style="font-family:'DM Sans',sans-serif; font-size:13px; color:{PALETTE['text_mid']}; margin-top:4px;">{f.get('name','')} · {f.get('industry','')}</div>
+              <div style="font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:{PALETTE['slate_blue']}; line-height:1;">{sel}</div>
+              <div style="font-family:'Lato',sans-serif; font-size:13px; color:{PALETTE['text_mid']}; margin-top:4px;">{f.get('name','')} · {f.get('industry','')}</div>
             </div>
             <div style="display:flex; gap:32px; align-items:center;">
               <div>
-                <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; color:{PALETTE['text_dark']};">${f['price']:.2f if f.get('price') else '—'}</div>
-                <div style="font-family:'DM Mono',monospace; font-size:11px; color:{PALETTE['teal_slate'] if price_chg and price_chg>=0 else PALETTE['sell']};">{f'+{price_chg:.2f}%' if price_chg else ''}</div>
+                <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:{PALETTE['text_dark']};">${f['price']:.2f if f.get('price') else '—'}</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:{PALETTE['teal_slate'] if price_chg and price_chg>=0 else PALETTE['sell']};">{f'+{price_chg:.2f}%' if price_chg else ''}</div>
               </div>
-              <div>{badge_html(rating)}<div style="font-family:'DM Mono',monospace; font-size:10px; color:{PALETTE['text_light']}; margin-top:6px; text-align:center;">Score: {score}/11</div></div>
+              <div>{badge_html(rating)}<div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:{PALETTE['text_light']}; margin-top:6px; text-align:center;">Score: {score}/11</div></div>
             </div>
           </div>
         </div>
@@ -1094,78 +1097,72 @@ with tab_single:
 
 # ─── TAB 3: EV/EBITDA COMPS ──────────────────────────────────────────────────
 with tab_comps:
-    comps_data = list(all_data.values())
-    valid_comps = [c for c in comps_data if c.get("ev_ebitda") and c.get("op_margin")]
-
-    if not valid_comps:
-        st.info("Insufficient data for comps.")
+    if _NO_DATA:
+        st.warning(_NO_DATA_MSG)
     else:
-        st.plotly_chart(plot_comps_bubble(valid_comps), use_container_width=True)
+        comps_data = list(all_data.values())
+        valid_comps = [c for c in comps_data if c.get("ev_ebitda") and c.get("op_margin")]
 
-        st.markdown("### Comparable Company Table")
-        ev_ebitdas_all = [c["ev_ebitda"] for c in valid_comps]
-        median_ev_ebitda = np.median(ev_ebitdas_all)
+        if not valid_comps:
+            st.info("Insufficient data for comps.")
+        else:
+            st.plotly_chart(plot_comps_bubble(valid_comps), use_container_width=True)
 
-        comp_rows = []
-        for c in comps_data:
-            ev_e = c.get("ev_ebitda")
-            prem_disc = ((ev_e - median_ev_ebitda) / median_ev_ebitda * 100) if ev_e and median_ev_ebitda else None
+            st.markdown("### Comparable Company Table")
+            ev_ebitdas_all = [c["ev_ebitda"] for c in valid_comps]
+            median_ev_ebitda = np.median(ev_ebitdas_all)
+
+            comp_rows = []
+            for c in comps_data:
+                ev_e = c.get("ev_ebitda")
+                prem_disc = ((ev_e - median_ev_ebitda) / median_ev_ebitda * 100) if ev_e and median_ev_ebitda else None
+                comp_rows.append({
+                    "Ticker": c.get("ticker", ""),
+                    "Name": (c.get("name") or "")[:28],
+                    "Revenue": fmt_b(c.get("rev")),
+                    "EBITDA": fmt_b(c.get("ebitda")),
+                    "EV": fmt_b(c.get("ev")),
+                    "EV/EBITDA": fmt_x(ev_e),
+                    "vs Median": f"{prem_disc:+.1f}%" if prem_disc else "—",
+                    "Op Margin": fmt_pct(c.get("op_margin")),
+                    "Rev Growth": fmt_pct(c.get("rev_growth")),
+                    "Net Lev": fmt_x(c.get("net_lev")),
+                    "P/E": fmt_x(c.get("pe")),
+                    "ROE": fmt_pct(c.get("roe")),
+                })
+
             comp_rows.append({
-                "Ticker": c.get("ticker", ""),
-                "Name": (c.get("name") or "")[:28],
-                "Revenue": fmt_b(c.get("rev")),
-                "EBITDA": fmt_b(c.get("ebitda")),
-                "EV": fmt_b(c.get("ev")),
-                "EV/EBITDA": fmt_x(ev_e),
-                "vs Median": f"{prem_disc:+.1f}%" if prem_disc else "—",
-                "Op Margin": fmt_pct(c.get("op_margin")),
-                "Rev Growth": fmt_pct(c.get("rev_growth")),
-                "Net Lev": fmt_x(c.get("net_lev")),
-                "P/E": fmt_x(c.get("pe")),
-                "ROE": fmt_pct(c.get("roe")),
+                "Ticker": "— MEDIAN —", "Name": "",
+                "Revenue": "—", "EBITDA": "—", "EV": "—",
+                "EV/EBITDA": f"{median_ev_ebitda:.1f}x", "vs Median": "0.0%",
+                "Op Margin": fmt_pct(np.median([c["op_margin"] for c in valid_comps if c.get("op_margin")])),
+                "Rev Growth": "—", "Net Lev": "—", "P/E": "—", "ROE": "—",
             })
 
-        # Add median row
-        comp_rows.append({
-            "Ticker": "— MEDIAN —",
-            "Name": "",
-            "Revenue": "—",
-            "EBITDA": "—",
-            "EV": "—",
-            "EV/EBITDA": f"{median_ev_ebitda:.1f}x",
-            "vs Median": "0.0%",
-            "Op Margin": fmt_pct(np.median([c["op_margin"] for c in valid_comps if c.get("op_margin")])),
-            "Rev Growth": "—",
-            "Net Lev": "—",
-            "P/E": "—",
-            "ROE": "—",
-        })
+            comp_df = pd.DataFrame(comp_rows)
 
-        comp_df = pd.DataFrame(comp_rows)
+            def style_vs_median(val):
+                try:
+                    v = float(val.replace("%","").replace("+",""))
+                    if v < -10: return f"color:{PALETTE['buy']}; font-weight:600;"
+                    if v > 15: return f"color:{PALETTE['sell']}; font-weight:600;"
+                except:
+                    pass
+                return ""
 
-        def style_vs_median(val):
-            try:
-                v = float(val.replace("%","").replace("+",""))
-                if v < -10: return f"color:{PALETTE['buy']}; font-weight:600;"
-                if v > 15: return f"color:{PALETTE['sell']}; font-weight:600;"
-            except:
-                pass
-            return ""
+            styled_comp = comp_df.style.applymap(style_vs_median, subset=["vs Median"])
+            st.dataframe(styled_comp, use_container_width=True, height=420)
 
-        styled_comp = comp_df.style.applymap(style_vs_median, subset=["vs Median"])
-        st.dataframe(styled_comp, use_container_width=True, height=420)
-
-        m1, m2, m3, m4 = st.columns(4)
-        m1.metric("Median EV/EBITDA", fmt_x(median_ev_ebitda))
-        m2.metric("Median Op Margin", fmt_pct(np.median([c["op_margin"] for c in valid_comps if c.get("op_margin")])))
-        if ev_ebitdas_all:
-            m3.metric("Min EV/EBITDA", fmt_x(min(ev_ebitdas_all)))
-            m4.metric("Max EV/EBITDA", fmt_x(max(ev_ebitdas_all)))
-
+            m1, m2, m3, m4 = st.columns(4)
+            m1.metric("Median EV/EBITDA", fmt_x(median_ev_ebitda))
+            m2.metric("Median Op Margin", fmt_pct(np.median([c["op_margin"] for c in valid_comps if c.get("op_margin")])))
+            if ev_ebitdas_all:
+                m3.metric("Min EV/EBITDA", fmt_x(min(ev_ebitdas_all)))
+                m4.metric("Max EV/EBITDA", fmt_x(max(ev_ebitdas_all)))
 # ─── TAB 4: DCF SENSITIVITY ──────────────────────────────────────────────────
 with tab_dcf:
-    if not all_data:
-        st.info("No data loaded.")
+    if _NO_DATA:
+        st.warning(_NO_DATA_MSG)
     else:
         sel_dcf = st.selectbox("Select ticker for sensitivity", list(all_data.keys()), key="dcf_sel")
         f_dcf = all_data[sel_dcf]
@@ -1218,190 +1215,196 @@ with tab_scenario:
     st.markdown("### ⟁ Scenario Engineering")
     st.markdown("*Define bull, base, and bear cases — or build custom scenarios with full parameter control.*")
 
-    sel_sc = st.selectbox("Select ticker", list(all_data.keys()), key="sc_sel")
-    f_sc = all_data[sel_sc]
+    if _NO_DATA:
+        st.warning(_NO_DATA_MSG)
+    else:
+        sel_sc = st.selectbox("Select ticker", list(all_data.keys()), key="sc_sel")
+        f_sc = all_data[sel_sc]
 
-    st.markdown("---")
+        st.markdown("---")
 
-    # Three scenario columns
-    col_bear, col_base, col_bull = st.columns(3)
+        # Three scenario columns
+        col_bear, col_base, col_bull = st.columns(3)
 
-    with col_bear:
-        bear_color = PALETTE["sell"]
-        st.markdown(f"<h4 style='color:{bear_color};'>⬇ Bear Case</h4>", unsafe_allow_html=True)
-        bear_cagr = st.slider("Rev CAGR (%)", -5.0, 20.0, max(rev_cagr - 4, 0.0), 0.25, key="bear_cagr")
-        bear_fcf = st.slider("FCF Margin (%)", 1.0, 30.0, max(fcf_margin - 4, 2.0), 0.5, key="bear_fcf")
-        bear_wacc = st.slider("WACC (%)", 5.0, 16.0, min(wacc + 1.5, 15.0), 0.25, key="bear_wacc")
-        bear_tgr = st.slider("Terminal Growth (%)", 0.5, 4.0, max(tgr - 0.5, 0.5), 0.25, key="bear_tgr")
-        bear_label = st.text_input("Scenario name", "Bear", key="bear_label")
+        with col_bear:
+            bear_color = PALETTE["sell"]
+            st.markdown(f"<h4 style='color:{bear_color};'>⬇ Bear Case</h4>", unsafe_allow_html=True)
+            bear_cagr = st.slider("Rev CAGR (%)", -5.0, 20.0, max(rev_cagr - 4, 0.0), 0.25, key="bear_cagr")
+            bear_fcf = st.slider("FCF Margin (%)", 1.0, 30.0, max(fcf_margin - 4, 2.0), 0.5, key="bear_fcf")
+            bear_wacc = st.slider("WACC (%)", 5.0, 16.0, min(wacc + 1.5, 15.0), 0.25, key="bear_wacc")
+            bear_tgr = st.slider("Terminal Growth (%)", 0.5, 4.0, max(tgr - 0.5, 0.5), 0.25, key="bear_tgr")
+            bear_label = st.text_input("Scenario name", "Bear", key="bear_label")
 
-    with col_base:
-        base_color = PALETTE["slate_blue"]
-        st.markdown(f"<h4 style='color:{base_color};'>◆ Base Case</h4>", unsafe_allow_html=True)
-        base_cagr = st.slider("Rev CAGR (%)", -5.0, 20.0, rev_cagr, 0.25, key="base_cagr")
-        base_fcf = st.slider("FCF Margin (%)", 1.0, 30.0, fcf_margin, 0.5, key="base_fcf")
-        base_wacc = st.slider("WACC (%)", 5.0, 16.0, wacc, 0.25, key="base_wacc")
-        base_tgr = st.slider("Terminal Growth (%)", 0.5, 4.0, tgr, 0.25, key="base_tgr")
-        base_label = st.text_input("Scenario name", "Base", key="base_label")
+        with col_base:
+            base_color = PALETTE["slate_blue"]
+            st.markdown(f"<h4 style='color:{base_color};'>◆ Base Case</h4>", unsafe_allow_html=True)
+            base_cagr = st.slider("Rev CAGR (%)", -5.0, 20.0, rev_cagr, 0.25, key="base_cagr")
+            base_fcf = st.slider("FCF Margin (%)", 1.0, 30.0, fcf_margin, 0.5, key="base_fcf")
+            base_wacc = st.slider("WACC (%)", 5.0, 16.0, wacc, 0.25, key="base_wacc")
+            base_tgr = st.slider("Terminal Growth (%)", 0.5, 4.0, tgr, 0.25, key="base_tgr")
+            base_label = st.text_input("Scenario name", "Base", key="base_label")
 
-    with col_bull:
-        bull_color = PALETTE["buy"]
-        st.markdown(f"<h4 style='color:{bull_color};'>⬆ Bull Case</h4>", unsafe_allow_html=True)
-        bull_cagr = st.slider("Rev CAGR (%)", -5.0, 20.0, min(rev_cagr + 4, 20.0), 0.25, key="bull_cagr")
-        bull_fcf = st.slider("FCF Margin (%)", 1.0, 30.0, min(fcf_margin + 4, 30.0), 0.5, key="bull_fcf")
-        bull_wacc = st.slider("WACC (%)", 5.0, 16.0, max(wacc - 1.0, 5.0), 0.25, key="bull_wacc")
-        bull_tgr = st.slider("Terminal Growth (%)", 0.5, 4.0, min(tgr + 0.5, 4.0), 0.25, key="bull_tgr")
-        bull_label = st.text_input("Scenario name", "Bull", key="bull_label")
+        with col_bull:
+            bull_color = PALETTE["buy"]
+            st.markdown(f"<h4 style='color:{bull_color};'>⬆ Bull Case</h4>", unsafe_allow_html=True)
+            bull_cagr = st.slider("Rev CAGR (%)", -5.0, 20.0, min(rev_cagr + 4, 20.0), 0.25, key="bull_cagr")
+            bull_fcf = st.slider("FCF Margin (%)", 1.0, 30.0, min(fcf_margin + 4, 30.0), 0.5, key="bull_fcf")
+            bull_wacc = st.slider("WACC (%)", 5.0, 16.0, max(wacc - 1.0, 5.0), 0.25, key="bull_wacc")
+            bull_tgr = st.slider("Terminal Growth (%)", 0.5, 4.0, min(tgr + 0.5, 4.0), 0.25, key="bull_tgr")
+            bull_label = st.text_input("Scenario name", "Bull", key="bull_label")
 
-    # Custom scenario
-    with st.expander("+ Add Custom Scenario"):
-        c1, c2, c3, c4, c5 = st.columns(5)
-        with c1: custom_cagr = st.number_input("Rev CAGR (%)", -10.0, 30.0, rev_cagr)
-        with c2: custom_fcf = st.number_input("FCF Margin (%)", 0.0, 40.0, fcf_margin)
-        with c3: custom_wacc = st.number_input("WACC (%)", 4.0, 20.0, wacc)
-        with c4: custom_tgr = st.number_input("TGR (%)", 0.5, 5.0, tgr)
-        with c5: custom_label = st.text_input("Label", "Custom")
-        use_custom = st.checkbox("Include custom scenario", value=False)
+        # Custom scenario
+        with st.expander("+ Add Custom Scenario"):
+            c1, c2, c3, c4, c5 = st.columns(5)
+            with c1: custom_cagr = st.number_input("Rev CAGR (%)", -10.0, 30.0, rev_cagr)
+            with c2: custom_fcf = st.number_input("FCF Margin (%)", 0.0, 40.0, fcf_margin)
+            with c3: custom_wacc = st.number_input("WACC (%)", 4.0, 20.0, wacc)
+            with c4: custom_tgr = st.number_input("TGR (%)", 0.5, 5.0, tgr)
+            with c5: custom_label = st.text_input("Label", "Custom")
+            use_custom = st.checkbox("Include custom scenario", value=False)
 
-    st.markdown("---")
+        st.markdown("---")
 
-    # Run scenarios
-    scenarios_params = {
-        bear_label: (bear_cagr, bear_fcf, bear_wacc, bear_tgr),
-        base_label: (base_cagr, base_fcf, base_wacc, base_tgr),
-        bull_label: (bull_cagr, bull_fcf, bull_wacc, bull_tgr),
-    }
-    if use_custom:
-        scenarios_params[custom_label] = (custom_cagr, custom_fcf, custom_wacc, custom_tgr)
+        # Run scenarios
+        scenarios_params = {
+            bear_label: (bear_cagr, bear_fcf, bear_wacc, bear_tgr),
+            base_label: (base_cagr, base_fcf, base_wacc, base_tgr),
+            bull_label: (bull_cagr, bull_fcf, bull_wacc, bull_tgr),
+        }
+        if use_custom:
+            scenarios_params[custom_label] = (custom_cagr, custom_fcf, custom_wacc, custom_tgr)
 
-    scenario_results = {}
-    for name, (c_, f_, w_, g_) in scenarios_params.items():
-        if f_sc.get("rev"):
-            scenario_results[name] = run_dcf(f_sc, w_, g_, c_, f_, dcf_years)
+        scenario_results = {}
+        for name, (c_, f_, w_, g_) in scenarios_params.items():
+            if f_sc.get("rev"):
+                scenario_results[name] = run_dcf(f_sc, w_, g_, c_, f_, dcf_years)
 
-    # Summary table
-    sc_rows = []
-    for name, res in scenario_results.items():
-        if res:
-            sc_rows.append({
-                "Scenario": name,
-                "Rev CAGR": f"{scenarios_params[name][0]:.1f}%",
-                "FCF Margin": f"{scenarios_params[name][1]:.1f}%",
-                "WACC": f"{scenarios_params[name][2]:.2f}%",
-                "TGR": f"{scenarios_params[name][3]:.2f}%",
-                "Intrinsic EV": fmt_b(res.get("intrinsic_ev")),
-                "Equity Value": fmt_b(res.get("equity_val")),
-                "Intrinsic Price": f"${res['intrinsic_price']:.2f}" if res.get("intrinsic_price") else "—",
-                "DCF Upside": f"{res['upside']:+.1f}%" if res.get("upside") else "—",
-            })
+        # Summary table
+        sc_rows = []
+        for name, res in scenario_results.items():
+            if res:
+                sc_rows.append({
+                    "Scenario": name,
+                    "Rev CAGR": f"{scenarios_params[name][0]:.1f}%",
+                    "FCF Margin": f"{scenarios_params[name][1]:.1f}%",
+                    "WACC": f"{scenarios_params[name][2]:.2f}%",
+                    "TGR": f"{scenarios_params[name][3]:.2f}%",
+                    "Intrinsic EV": fmt_b(res.get("intrinsic_ev")),
+                    "Equity Value": fmt_b(res.get("equity_val")),
+                    "Intrinsic Price": f"${res['intrinsic_price']:.2f}" if res.get("intrinsic_price") else "—",
+                    "DCF Upside": f"{res['upside']:+.1f}%" if res.get("upside") else "—",
+                })
 
-    if sc_rows:
-        sc_df = pd.DataFrame(sc_rows)
+        if sc_rows:
+            sc_df = pd.DataFrame(sc_rows)
 
-        def style_upside(val):
-            try:
-                v = float(val.replace("%","").replace("+",""))
-                if v > 15: return f"color:{PALETTE['buy']}; font-weight:700;"
-                if v < -10: return f"color:{PALETTE['sell']}; font-weight:700;"
-            except: pass
-            return ""
+            def style_upside(val):
+                try:
+                    v = float(val.replace("%","").replace("+",""))
+                    if v > 15: return f"color:{PALETTE['buy']}; font-weight:700;"
+                    if v < -10: return f"color:{PALETTE['sell']}; font-weight:700;"
+                except:
+                    pass
+                return ""
 
-        st.dataframe(
-            sc_df.style.applymap(style_upside, subset=["DCF Upside"]),
-            use_container_width=True
+            st.dataframe(
+                sc_df.style.applymap(style_upside, subset=["DCF Upside"]),
+                use_container_width=True
+            )
+
+        # Tornado chart
+        if scenario_results:
+            st.plotly_chart(plot_scenario_tornado(scenario_results, sel_sc), use_container_width=True)
+
+        # FCF Projection comparison
+        st.markdown("### FCF Projection Comparison")
+        fig_fc = go.Figure()
+        colors_sc = [PALETTE["sell"], PALETTE["slate_blue"], PALETTE["buy"], PALETTE["teal_slate"]]
+        for i, (name, res) in enumerate(scenario_results.items()):
+            if res and res.get("projections"):
+                proj = res["projections"]
+                fig_fc.add_trace(go.Scatter(
+                    x=[p["year"] for p in proj],
+                    y=[p["fcf"] / 1e9 for p in proj],
+                    name=name,
+                    line=dict(color=colors_sc[i % len(colors_sc)], width=2.5),
+                    mode="lines+markers",
+                    marker=dict(size=7),
+                ))
+        fig_fc.update_layout(
+            **PLOT_TEMPLATE["layout"].to_plotly_json(),
+            title=f"{sel_sc} — Projected FCF by Scenario ($B)",
+            yaxis_title="Free Cash Flow ($B)",
+            height=340,
         )
-
-    # Tornado chart
-    if scenario_results:
-        st.plotly_chart(plot_scenario_tornado(scenario_results, sel_sc), use_container_width=True)
-
-    # FCF Projection comparison
-    st.markdown("### FCF Projection Comparison")
-    fig_fc = go.Figure()
-    colors_sc = [PALETTE["sell"], PALETTE["slate_blue"], PALETTE["buy"], PALETTE["teal_slate"]]
-    for i, (name, res) in enumerate(scenario_results.items()):
-        if res and res.get("projections"):
-            proj = res["projections"]
-            fig_fc.add_trace(go.Scatter(
-                x=[p["year"] for p in proj],
-                y=[p["fcf"] / 1e9 for p in proj],
-                name=name,
-                line=dict(color=colors_sc[i % len(colors_sc)], width=2.5),
-                mode="lines+markers",
-                marker=dict(size=7),
-            ))
-    fig_fc.update_layout(
-        **PLOT_TEMPLATE["layout"].to_plotly_json(),
-        title=f"{sel_sc} — Projected FCF by Scenario ($B)",
-        yaxis_title="Free Cash Flow ($B)",
-        height=340,
-    )
-    st.plotly_chart(fig_fc, use_container_width=True)
+        st.plotly_chart(fig_fc, use_container_width=True)
 
 # ─── TAB 6: MONTE CARLO ──────────────────────────────────────────────────────
 with tab_monte:
     st.markdown("### ⊕ Monte Carlo Simulation")
     st.markdown("*Stochastic valuation sampling WACC, TGR, Revenue CAGR, and FCF Margin from normal distributions.*")
 
-    sel_mc = st.selectbox("Select ticker", list(all_data.keys()), key="mc_sel")
-    f_mc = all_data[sel_mc]
-
-    mc_c1, mc_c2 = st.columns(2)
-    with mc_c1:
-        n_sims = st.slider("Simulations", 500, 10000, 2000, 500)
-    with mc_c2:
-        st.markdown(f"""
-        <div style="font-family:'DM Mono',monospace; font-size:11px; color:{PALETTE['text_mid']}; padding-top:8px;">
-        Base: WACC {wacc}% ± 0.5σ · TGR {tgr}% ± 0.25σ<br>
-        CAGR {rev_cagr}% ± 2.5σ · FCF Margin {fcf_margin}% ± 2.0σ
-        </div>
-        """, unsafe_allow_html=True)
-
-    if f_mc.get("rev") and f_mc.get("shares"):
-        fig_mc, mc_stats = plot_monte_carlo(f_mc, rev_cagr, fcf_margin, wacc, tgr, n_sims)
-        st.plotly_chart(fig_mc, use_container_width=True)
-
-        # Percentile table
-        mc1, mc2, mc3, mc4, mc5, mc6 = st.columns(6)
-        mc1.metric("P5 (Bear)", f"${mc_stats['p5']:.0f}")
-        mc2.metric("P25", f"${mc_stats['p25']:.0f}")
-        mc3.metric("P50 (Median)", f"${mc_stats['p50']:.0f}")
-        mc4.metric("P75", f"${mc_stats['p75']:.0f}")
-        mc5.metric("P95 (Bull)", f"${mc_stats['p95']:.0f}")
-        mc6.metric("Std Dev", f"${mc_stats['std']:.0f}")
-
-        # Probability of upside
-        mkt_price = f_mc.get("price") or 0
-        if mkt_price:
-            prob_up = (mc_stats["p50"] > mkt_price)
-            pct_above = 100 * sum(
-                1 for _ in range(200)
-                if (run_dcf(f_mc,
-                    max(np.random.normal(wacc, 0.5), 5),
-                    max(np.random.normal(tgr, 0.25), 0.5),
-                    max(np.random.normal(rev_cagr, 2.5), 0),
-                    max(np.random.normal(fcf_margin, 2.0), 1)) or {}).get("intrinsic_price", 0) > mkt_price
-            ) / 200
-
-            st.markdown("---")
-            col_a, col_b = st.columns(2)
-            col_a.metric(
-                "Current Market Price",
-                f"${mkt_price:.2f}",
-                delta=f"P50 upside: {((mc_stats['p50']-mkt_price)/mkt_price*100):+.1f}%"
-            )
-            col_b.metric(
-                "Prob. Intrinsic > Market",
-                f"{pct_above:.0f}%",
-                delta="based on simulation"
-            )
+    if _NO_DATA:
+        st.warning(_NO_DATA_MSG)
     else:
-        st.warning("Insufficient data for Monte Carlo simulation on this ticker.")
+        sel_mc = st.selectbox("Select ticker", list(all_data.keys()), key="mc_sel")
+        f_mc = all_data[sel_mc]
+
+        mc_c1, mc_c2 = st.columns(2)
+        with mc_c1:
+            n_sims = st.slider("Simulations", 500, 10000, 2000, 500)
+        with mc_c2:
+            st.markdown(f"""
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:{PALETTE['text_mid']}; padding-top:8px;">
+            Base: WACC {wacc}% ± 0.5σ · TGR {tgr}% ± 0.25σ<br>
+            CAGR {rev_cagr}% ± 2.5σ · FCF Margin {fcf_margin}% ± 2.0σ
+            </div>
+            """, unsafe_allow_html=True)
+
+        if f_mc.get("rev") and f_mc.get("shares"):
+            fig_mc, mc_stats = plot_monte_carlo(f_mc, rev_cagr, fcf_margin, wacc, tgr, n_sims)
+            st.plotly_chart(fig_mc, use_container_width=True)
+
+            # Percentile table
+            mc1, mc2, mc3, mc4, mc5, mc6 = st.columns(6)
+            mc1.metric("P5 (Bear)", f"${mc_stats['p5']:.0f}")
+            mc2.metric("P25", f"${mc_stats['p25']:.0f}")
+            mc3.metric("P50 (Median)", f"${mc_stats['p50']:.0f}")
+            mc4.metric("P75", f"${mc_stats['p75']:.0f}")
+            mc5.metric("P95 (Bull)", f"${mc_stats['p95']:.0f}")
+            mc6.metric("Std Dev", f"${mc_stats['std']:.0f}")
+
+            # Probability of upside
+            mkt_price = f_mc.get("price") or 0
+            if mkt_price:
+                pct_above = 100 * sum(
+                    1 for _ in range(200)
+                    if (run_dcf(f_mc,
+                        max(np.random.normal(wacc, 0.5), 5),
+                        max(np.random.normal(tgr, 0.25), 0.5),
+                        max(np.random.normal(rev_cagr, 2.5), 0),
+                        max(np.random.normal(fcf_margin, 2.0), 1)) or {}).get("intrinsic_price", 0) > mkt_price
+                ) / 200
+
+                st.markdown("---")
+                col_a, col_b = st.columns(2)
+                col_a.metric(
+                    "Current Market Price",
+                    f"${mkt_price:.2f}",
+                    delta=f"P50 upside: {((mc_stats['p50']-mkt_price)/mkt_price*100):+.1f}%"
+                )
+                col_b.metric(
+                    "Prob. Intrinsic > Market",
+                    f"{pct_above:.0f}%",
+                    delta="based on simulation"
+                )
+        else:
+            st.warning("Insufficient data for Monte Carlo simulation on this ticker.")
 
 # ─── FOOTER ──────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown(f"""
-<div style="text-align:center; font-family:'DM Mono',monospace; font-size:9px; color:{PALETTE['text_light']}; letter-spacing:0.15em; padding:12px 0;">
+<div style="text-align:center; font-family:'JetBrains Mono',monospace; font-size:9px; color:{PALETTE['text_light']}; letter-spacing:0.15em; padding:12px 0;">
   SELL-SIDE LITE · INSTITUTIONAL RESEARCH PLATFORM · FOR INFORMATIONAL PURPOSES ONLY · NOT INVESTMENT ADVICE
   <br>DATA VIA YAHOO FINANCE · DCF ENGINE · EV/EBITDA COMPS · MONTE CARLO · SCENARIO ENGINEERING
 </div>
