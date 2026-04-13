@@ -315,51 +315,240 @@ COLOR_SCALE = [
     [1.0, PALETTE['buy']],
 ]
 
+# ─── DEMO DATA FALLBACK ──────────────────────────────────────────────────────
+DEMO_UNIVERSE = {
+    "CAT":  dict(name="Caterpillar Inc.",     sector="Industrials", industry="Industrial Machinery",
+                 currentPrice=342.10, marketCap=163e9, enterpriseValue=190e9,
+                 totalRevenue=65.2e9, ebitda=12.8e9, operatingMargins=0.155, grossMargins=0.38,
+                 profitMargins=0.127, revenueGrowth=0.042, returnOnEquity=0.52, returnOnAssets=0.098,
+                 totalDebt=38.2e9, totalCash=6.1e9, bookValue=18.7, sharesOutstanding=478e6,
+                 trailingPE=17.2, priceToBook=9.1, priceToSalesTrailing12Months=2.5,
+                 beta=0.98, trailingEps=19.9, forwardEps=22.1,
+                 _fcf=6.8e9, _ebit=10.1e9, _da=2.7e9),
+    "DE":   dict(name="Deere & Company",      sector="Industrials", industry="Industrial Machinery",
+                 currentPrice=398.50, marketCap=109e9, enterpriseValue=168e9,
+                 totalRevenue=61.3e9, ebitda=12.1e9, operatingMargins=0.166, grossMargins=0.34,
+                 profitMargins=0.124, revenueGrowth=-0.08, returnOnEquity=0.47, returnOnAssets=0.074,
+                 totalDebt=58.2e9, totalCash=7.8e9, bookValue=22.8, sharesOutstanding=274e6,
+                 trailingPE=12.1, priceToBook=5.5, priceToSalesTrailing12Months=1.8,
+                 beta=0.96, trailingEps=32.9, forwardEps=25.1,
+                 _fcf=5.2e9, _ebit=10.2e9, _da=1.9e9),
+    "HON":  dict(name="Honeywell Intl.",       sector="Industrials", industry="Electrical Equipment",
+                 currentPrice=196.40, marketCap=128e9, enterpriseValue=148e9,
+                 totalRevenue=37.4e9, ebitda=8.6e9, operatingMargins=0.193, grossMargins=0.34,
+                 profitMargins=0.144, revenueGrowth=0.038, returnOnEquity=0.31, returnOnAssets=0.088,
+                 totalDebt=20.3e9, totalCash=8.9e9, bookValue=21.1, sharesOutstanding=652e6,
+                 trailingPE=22.8, priceToBook=6.1, priceToSalesTrailing12Months=3.4,
+                 beta=0.88, trailingEps=8.62, forwardEps=10.4,
+                 _fcf=4.9e9, _ebit=7.2e9, _da=1.4e9),
+    "RTX":  dict(name="RTX Corporation",       sector="Industrials", industry="Aerospace & Defense",
+                 currentPrice=113.20, marketCap=148e9, enterpriseValue=182e9,
+                 totalRevenue=78.8e9, ebitda=11.4e9, operatingMargins=0.113, grossMargins=0.18,
+                 profitMargins=0.066, revenueGrowth=0.101, returnOnEquity=0.089, returnOnAssets=0.038,
+                 totalDebt=45.1e9, totalCash=8.1e9, bookValue=29.8, sharesOutstanding=1310e6,
+                 trailingPE=40.1, priceToBook=3.8, priceToSalesTrailing12Months=1.9,
+                 beta=0.73, trailingEps=2.82, forwardEps=6.1,
+                 _fcf=3.8e9, _ebit=8.9e9, _da=2.5e9),
+    "GE":   dict(name="GE Aerospace",          sector="Industrials", industry="Aerospace & Defense",
+                 currentPrice=171.30, marketCap=186e9, enterpriseValue=198e9,
+                 totalRevenue=32.1e9, ebitda=7.2e9, operatingMargins=0.181, grossMargins=0.31,
+                 profitMargins=0.128, revenueGrowth=0.11, returnOnEquity=0.29, returnOnAssets=0.072,
+                 totalDebt=22.1e9, totalCash=14.4e9, bookValue=14.2, sharesOutstanding=1083e6,
+                 trailingPE=35.6, priceToBook=12.1, priceToSalesTrailing12Months=5.8,
+                 beta=1.22, trailingEps=4.81, forwardEps=5.9,
+                 _fcf=4.1e9, _ebit=5.8e9, _da=1.4e9),
+    "LMT":  dict(name="Lockheed Martin",        sector="Industrials", industry="Aerospace & Defense",
+                 currentPrice=442.80, marketCap=103e9, enterpriseValue=116e9,
+                 totalRevenue=70.2e9, ebitda=9.3e9, operatingMargins=0.115, grossMargins=0.13,
+                 profitMargins=0.083, revenueGrowth=0.054, returnOnEquity=1.20, returnOnAssets=0.112,
+                 totalDebt=18.2e9, totalCash=2.5e9, bookValue=6.4, sharesOutstanding=233e6,
+                 trailingPE=18.1, priceToBook=16.4, priceToSalesTrailing12Months=1.5,
+                 beta=0.44, trailingEps=24.5, forwardEps=27.2,
+                 _fcf=6.2e9, _ebit=8.1e9, _da=1.2e9),
+    "EMR":  dict(name="Emerson Electric",       sector="Industrials", industry="Electrical Equipment",
+                 currentPrice=88.60, marketCap=52e9, enterpriseValue=62e9,
+                 totalRevenue=16.5e9, ebitda=4.3e9, operatingMargins=0.218, grossMargins=0.44,
+                 profitMargins=0.170, revenueGrowth=0.14, returnOnEquity=0.14, returnOnAssets=0.064,
+                 totalDebt=8.2e9, totalCash=2.8e9, bookValue=12.4, sharesOutstanding=591e6,
+                 trailingPE=14.4, priceToBook=4.2, priceToSalesTrailing12Months=3.2,
+                 beta=1.05, trailingEps=6.15, forwardEps=7.1,
+                 _fcf=2.8e9, _ebit=3.6e9, _da=0.7e9),
+    "UNP":  dict(name="Union Pacific Corp.",    sector="Industrials", industry="Transportation",
+                 currentPrice=221.40, marketCap=134e9, enterpriseValue=166e9,
+                 totalRevenue=24.1e9, ebitda=11.2e9, operatingMargins=0.407, grossMargins=0.41,
+                 profitMargins=0.282, revenueGrowth=-0.002, returnOnEquity=0.72, returnOnAssets=0.11,
+                 totalDebt=33.2e9, totalCash=1.2e9, bookValue=9.4, sharesOutstanding=607e6,
+                 trailingPE=20.1, priceToBook=14.3, priceToSalesTrailing12Months=5.6,
+                 beta=1.01, trailingEps=11.0, forwardEps=12.2,
+                 _fcf=5.8e9, _ebit=9.8e9, _da=1.4e9),
+    "ITW":  dict(name="Illinois Tool Works",    sector="Industrials", industry="Industrial Machinery",
+                 currentPrice=218.90, marketCap=66e9, enterpriseValue=76e9,
+                 totalRevenue=15.9e9, ebitda=5.1e9, operatingMargins=0.277, grossMargins=0.44,
+                 profitMargins=0.201, revenueGrowth=-0.011, returnOnEquity=None, returnOnAssets=0.24,
+                 totalDebt=9.8e9, totalCash=1.6e9, bookValue=2.4, sharesOutstanding=303e6,
+                 trailingPE=24.1, priceToBook=None, priceToSalesTrailing12Months=4.2,
+                 beta=0.97, trailingEps=9.08, forwardEps=10.1,
+                 _fcf=3.1e9, _ebit=4.4e9, _da=0.7e9),
+    "PH":   dict(name="Parker Hannifin",        sector="Industrials", industry="Industrial Machinery",
+                 currentPrice=572.10, marketCap=73e9, enterpriseValue=88e9,
+                 totalRevenue=20.1e9, ebitda=5.2e9, operatingMargins=0.214, grossMargins=0.37,
+                 profitMargins=0.144, revenueGrowth=0.015, returnOnEquity=0.29, returnOnAssets=0.088,
+                 totalDebt=14.3e9, totalCash=1.8e9, bookValue=11.8, sharesOutstanding=128e6,
+                 trailingPE=21.4, priceToBook=4.9, priceToSalesTrailing12Months=3.6,
+                 beta=1.18, trailingEps=26.7, forwardEps=30.2,
+                 _fcf=2.9e9, _ebit=4.3e9, _da=0.9e9),
+    "AAPL": dict(name="Apple Inc.",             sector="Technology", industry="Consumer Electronics",
+                 currentPrice=184.20, marketCap=2820e9, enterpriseValue=2790e9,
+                 totalRevenue=391e9, ebitda=130e9, operatingMargins=0.312, grossMargins=0.454,
+                 profitMargins=0.263, revenueGrowth=0.021, returnOnEquity=1.47, returnOnAssets=0.28,
+                 totalDebt=104e9, totalCash=67e9, bookValue=4.06, sharesOutstanding=15350e6,
+                 trailingPE=28.4, priceToBook=45.4, priceToSalesTrailing12Months=7.2,
+                 beta=1.24, trailingEps=6.48, forwardEps=7.1,
+                 _fcf=111e9, _ebit=122e9, _da=11e9),
+    "MSFT": dict(name="Microsoft Corp.",        sector="Technology", industry="Software",
+                 currentPrice=378.80, marketCap=2810e9, enterpriseValue=2840e9,
+                 totalRevenue=245e9, ebitda=115e9, operatingMargins=0.445, grossMargins=0.694,
+                 profitMargins=0.358, revenueGrowth=0.158, returnOnEquity=0.38, returnOnAssets=0.19,
+                 totalDebt=79e9, totalCash=80e9, bookValue=36.1, sharesOutstanding=7440e6,
+                 trailingPE=33.8, priceToBook=10.5, priceToSalesTrailing12Months=11.5,
+                 beta=0.91, trailingEps=11.2, forwardEps=13.8,
+                 _fcf=74e9, _ebit=109e9, _da=14e9),
+    "NVDA": dict(name="NVIDIA Corporation",     sector="Technology", industry="Semiconductors",
+                 currentPrice=824.40, marketCap=2030e9, enterpriseValue=2020e9,
+                 totalRevenue=130e9, ebitda=82e9, operatingMargins=0.618, grossMargins=0.748,
+                 profitMargins=0.558, revenueGrowth=1.222, returnOnEquity=1.23, returnOnAssets=0.58,
+                 totalDebt=11e9, totalCash=26e9, bookValue=2.93, sharesOutstanding=2462e6,
+                 trailingPE=52.1, priceToBook=None, priceToSalesTrailing12Months=15.6,
+                 beta=1.64, trailingEps=15.8, forwardEps=28.4,
+                 _fcf=60e9, _ebit=80e9, _da=4e9),
+    "JPM":  dict(name="JPMorgan Chase",         sector="Financials", industry="Banks",
+                 currentPrice=188.40, marketCap=541e9, enterpriseValue=None,
+                 totalRevenue=162e9, ebitda=None, operatingMargins=0.38, grossMargins=0.38,
+                 profitMargins=0.265, revenueGrowth=0.115, returnOnEquity=0.17, returnOnAssets=0.014,
+                 totalDebt=None, totalCash=None, bookValue=103.4, sharesOutstanding=2874e6,
+                 trailingPE=11.7, priceToBook=1.82, priceToSalesTrailing12Months=3.3,
+                 beta=1.12, trailingEps=16.1, forwardEps=17.2,
+                 _fcf=None, _ebit=None, _da=None),
+    "XOM":  dict(name="Exxon Mobil Corp.",      sector="Energy", industry="Oil & Gas",
+                 currentPrice=106.80, marketCap=464e9, enterpriseValue=508e9,
+                 totalRevenue=398e9, ebitda=58e9, operatingMargins=0.112, grossMargins=0.21,
+                 profitMargins=0.099, revenueGrowth=-0.048, returnOnEquity=0.14, returnOnAssets=0.082,
+                 totalDebt=44e9, totalCash=33e9, bookValue=64.2, sharesOutstanding=4340e6,
+                 trailingPE=13.4, priceToBook=1.66, priceToSalesTrailing12Months=1.2,
+                 beta=0.78, trailingEps=7.98, forwardEps=8.4,
+                 _fcf=18e9, _ebit=44e9, _da=14e9),
+}
+
+def _make_demo_hist(price, days=504):
+    """Generate realistic-looking price history via random walk."""
+    np.random.seed(hash(str(price)) % 2**31)
+    returns = np.random.normal(0.0003, 0.015, days)
+    prices = price * np.exp(np.cumsum(returns) - np.cumsum(returns)[-1])
+    prices[-1] = price
+    idx = pd.date_range(end=pd.Timestamp.today(), periods=days, freq="B")
+    return pd.DataFrame({"Close": prices}, index=idx)
+
+def _demo_fundamentals(ticker: str):
+    """Return a fundamentals dict from DEMO_UNIVERSE."""
+    d = DEMO_UNIVERSE.get(ticker.upper())
+    if not d:
+        # Generic fallback for unknown tickers
+        d = dict(name=f"{ticker} Corp.", sector="Unknown", industry="Unknown",
+                 currentPrice=100.0, marketCap=10e9, enterpriseValue=12e9,
+                 totalRevenue=5e9, ebitda=1e9, operatingMargins=0.15, grossMargins=0.35,
+                 profitMargins=0.10, revenueGrowth=0.05, returnOnEquity=0.12, returnOnAssets=0.06,
+                 totalDebt=2e9, totalCash=0.5e9, bookValue=10.0, sharesOutstanding=100e6,
+                 trailingPE=15.0, priceToBook=2.0, priceToSalesTrailing12Months=2.0,
+                 beta=1.0, trailingEps=6.0, forwardEps=7.0,
+                 _fcf=0.5e9, _ebit=0.8e9, _da=0.1e9)
+    price = d["currentPrice"]
+    net_debt = (d.get("totalDebt") or 0) - (d.get("totalCash") or 0)
+    ebitda = d.get("ebitda") or ((d.get("totalRevenue") or 0) * (d.get("operatingMargins") or 0.12) * 1.3)
+    ev = d.get("enterpriseValue") or ((d.get("marketCap") or 0) + net_debt)
+    shares = d.get("sharesOutstanding") or 1
+    equity_book = d.get("bookValue") or 1
+    invested_capital = (d.get("totalDebt") or 0) + (equity_book * shares)
+    ebit = d.get("_ebit") or ((d.get("totalRevenue") or 0) * (d.get("operatingMargins") or 0.12))
+    nopat = ebit * 0.79
+    roic = nopat / invested_capital if invested_capital else None
+    net_lev = net_debt / ebitda if ebitda else None
+    ev_ebitda = ev / ebitda if ebitda else None
+    return {
+        "ticker": ticker.upper(),
+        "name": d["name"], "sector": d["sector"], "industry": d["industry"],
+        "price": price, "mkt_cap": d.get("marketCap"), "ev": ev,
+        "rev": d.get("totalRevenue"), "ebitda": ebitda,
+        "ebit": ebit, "net_inc": (d.get("totalRevenue") or 0) * (d.get("profitMargins") or 0),
+        "eps": d.get("trailingEps"), "forward_eps": d.get("forwardEps"),
+        "total_debt": d.get("totalDebt", 0), "cash": d.get("totalCash", 0), "net_debt": net_debt,
+        "equity": equity_book, "shares": shares, "beta": d.get("beta", 1.0),
+        "da": d.get("_da", 0), "fcf": d.get("_fcf"),
+        "pe": d.get("trailingPE"), "pb": d.get("priceToBook"), "ps": d.get("priceToSalesTrailing12Months"),
+        "ev_ebitda": ev_ebitda,
+        "roe": d.get("returnOnEquity"), "roa": d.get("returnOnAssets"), "roic": roic,
+        "gross_margin": d.get("grossMargins"), "op_margin": d.get("operatingMargins"),
+        "net_margin": d.get("profitMargins"), "rev_growth": d.get("revenueGrowth"),
+        "net_lev": net_lev,
+        "_hist": _make_demo_hist(price),
+        "_is_demo": True,
+    }
+
 # ─── DATA FETCHING ────────────────────────────────────────────────────────────
 @st.cache_data(ttl=3600, show_spinner=False)
 def fetch_info_and_statements(ticker: str):
-    """Fetch fundamentals (info + financial statements) — cacheable."""
+    """Fetch fundamentals — with browser-like headers to avoid 401 on Cloud."""
+    import requests, time
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+    }
+    session = requests.Session()
+    session.headers.update(headers)
     for attempt in range(3):
         try:
-            t = yf.Ticker(ticker)
+            t = yf.Ticker(ticker, session=session)
             info = t.info or {}
-            # Bail if yfinance returned an empty shell
             if not info.get("regularMarketPrice") and not info.get("currentPrice") and not info.get("marketCap"):
                 if attempt < 2:
-                    import time; time.sleep(1)
+                    time.sleep(1.5)
                     continue
+                return {"valid": False, "error": "empty_info"}
             fin = t.financials
             bs  = t.balance_sheet
             cf  = t.cashflow
-            # Serialise DataFrames to JSON so cache_data can handle them
             return {
                 "info": info,
-                "fin_json":  fin.to_json()  if fin  is not None and not fin.empty  else None,
-                "bs_json":   bs.to_json()   if bs   is not None and not bs.empty   else None,
-                "cf_json":   cf.to_json()   if cf   is not None and not cf.empty   else None,
+                "fin_json": fin.to_json() if fin is not None and not fin.empty else None,
+                "bs_json":  bs.to_json()  if bs  is not None and not bs.empty  else None,
+                "cf_json":  cf.to_json()  if cf  is not None and not cf.empty  else None,
                 "valid": True,
             }
         except Exception as e:
             if attempt < 2:
-                import time; time.sleep(1)
+                time.sleep(1.5)
             else:
                 return {"valid": False, "error": str(e)}
-    return {"valid": False, "error": "max retries"}
+    return {"valid": False, "error": "max_retries"}
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def fetch_price_history(ticker: str):
-    """Fetch OHLCV history separately — returns JSON string for cache compatibility."""
+    """Fetch price history — returns JSON string."""
+    import requests, time
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+    session = requests.Session()
+    session.headers.update(headers)
     for attempt in range(3):
         try:
-            t = yf.Ticker(ticker)
+            t = yf.Ticker(ticker, session=session)
             hist = t.history(period="2y", interval="1d")
             if hist is not None and not hist.empty:
                 return hist["Close"].to_json()
             if attempt < 2:
-                import time; time.sleep(1)
+                time.sleep(1)
         except Exception:
             if attempt < 2:
-                import time; time.sleep(1)
+                time.sleep(1)
     return None
 
 def fetch_ticker_data(ticker: str):
@@ -990,18 +1179,29 @@ tab_screener, tab_single, tab_comps, tab_dcf, tab_scenario, tab_monte = st.tabs(
 
 # ─── LOAD DATA ────────────────────────────────────────────────────────────────
 def load_all(tickers_list):
-    """Load all tickers — NOT cached at this level (cache is per-ticker above)."""
+    """Load all tickers — tries live yfinance first, falls back to demo data."""
     results = {}
+    live_failed = []
     for t in tickers_list:
+        t = t.upper().strip()
+        if not t:
+            continue
         data = fetch_ticker_data(t)
         if data.get("valid"):
             f = extract_fundamentals(data)
-            f["_hist"] = data.get("hist")   # DataFrame stored only in session, not cache
+            f["_hist"] = data.get("hist")
+            f["_is_demo"] = False
             results[t] = f
-    return results
+        else:
+            # Fall back to demo data
+            live_failed.append(t)
+            f = _demo_fundamentals(t)
+            results[t] = f
+    return results, live_failed
 
-with st.spinner("Fetching market data… (first load may take ~10s)"):
-    all_data = load_all(tickers)
+with st.spinner("Fetching market data…"):
+    all_data, _live_failed = load_all(tickers)
+    _using_demo = len(_live_failed) > 0
 
 # Run DCF for all tickers
 all_dcf = {}
@@ -1017,32 +1217,18 @@ for t, f in all_data.items():
     rating, score, details = compute_rating(f, all_dcf.get(t), sector_median)
     all_ratings[t] = {"rating": rating, "score": score, "details": details}
 
-_NO_DATA = len(all_data) == 0
-_NO_DATA_MSG = "⚠️ No data loaded. Check that tickers are valid and yfinance can reach Yahoo Finance."
+_NO_DATA = len(all_data) == 0  # Only true if tickers list was empty
 
 # ─── TAB 1: SCREENER ─────────────────────────────────────────────────────────
 with tab_screener:
     if _NO_DATA:
-        st.warning("⚠️ No data loaded — yfinance could not fetch any tickers.")
-        col_retry, col_debug = st.columns([1, 3])
-        with col_retry:
-            if st.button("🔄 Clear Cache & Retry"):
-                st.cache_data.clear()
-                st.rerun()
-        st.info("💡 **Tip:** If this persists, try tickers one at a time (e.g. just `AAPL`) to confirm yfinance is reachable. Streamlit Cloud's free tier occasionally blocks outbound requests.")
-        with st.expander("🔬 Debug — raw fetch results"):
-            for t in tickers:
-                try:
-                    raw = fetch_info_and_statements(t)
-                    if raw and raw.get("valid"):
-                        info = raw.get("info", {})
-                        price = info.get("currentPrice") or info.get("regularMarketPrice") or info.get("previousClose")
-                        st.write(f"**{t}**: valid={raw['valid']} | price={price} | keys={len(info)}")
-                    else:
-                        st.write(f"**{t}**: FAILED — {raw.get('error') if raw else 'None returned'}")
-                except Exception as ex:
-                    st.write(f"**{t}**: EXCEPTION — {ex}")
+        st.warning("Enter at least one ticker in the sidebar to get started.")
     else:
+        # Demo data banner
+        if _using_demo:
+            demo_tickers = ", ".join(_live_failed)
+            st.info(f"📊 **Live data unavailable** for: `{demo_tickers}` — showing illustrative demo data. All calculations and UI are fully functional. Deploy with a paid Streamlit tier or run locally for live prices.")
+
         rows = []
         for t, f in all_data.items():
             r = all_ratings[t]
@@ -1148,7 +1334,7 @@ with tab_screener:
 # ─── TAB 2: DEEP DIVE ─────────────────────────────────────────────────────────
 with tab_single:
     if _NO_DATA:
-        st.warning(_NO_DATA_MSG)
+        st.warning("Enter at least one ticker in the sidebar to get started.")
     else:
         sel = st.selectbox("Select ticker for deep dive", list(all_data.keys()))
         f = all_data[sel]
@@ -1220,7 +1406,7 @@ with tab_single:
 # ─── TAB 3: EV/EBITDA COMPS ──────────────────────────────────────────────────
 with tab_comps:
     if _NO_DATA:
-        st.warning(_NO_DATA_MSG)
+        st.warning("Enter at least one ticker in the sidebar to get started.")
     else:
         comps_data = list(all_data.values())
         valid_comps = [c for c in comps_data if c.get("ev_ebitda") and c.get("op_margin")]
@@ -1284,7 +1470,7 @@ with tab_comps:
 # ─── TAB 4: DCF SENSITIVITY ──────────────────────────────────────────────────
 with tab_dcf:
     if _NO_DATA:
-        st.warning(_NO_DATA_MSG)
+        st.warning("Enter at least one ticker in the sidebar to get started.")
     else:
         sel_dcf = st.selectbox("Select ticker for sensitivity", list(all_data.keys()), key="dcf_sel")
         f_dcf = all_data[sel_dcf]
@@ -1338,7 +1524,7 @@ with tab_scenario:
     st.markdown("*Define bull, base, and bear cases — or build custom scenarios with full parameter control.*")
 
     if _NO_DATA:
-        st.warning(_NO_DATA_MSG)
+        st.warning("Enter at least one ticker in the sidebar to get started.")
     else:
         sel_sc = st.selectbox("Select ticker", list(all_data.keys()), key="sc_sel")
         f_sc = all_data[sel_sc]
@@ -1467,7 +1653,7 @@ with tab_monte:
     st.markdown("*Stochastic valuation sampling WACC, TGR, Revenue CAGR, and FCF Margin from normal distributions.*")
 
     if _NO_DATA:
-        st.warning(_NO_DATA_MSG)
+        st.warning("Enter at least one ticker in the sidebar to get started.")
     else:
         sel_mc = st.selectbox("Select ticker", list(all_data.keys()), key="mc_sel")
         f_mc = all_data[sel_mc]
